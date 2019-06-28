@@ -1,13 +1,18 @@
 {
   "name": "wallet-tracker2",
-  "version": "0.0.0",
+  "version": "2.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
+    "start-client": "ng serve",
     "build": "ng build",
+    "postinstall": "ng build --aot -prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "pree2e": "webdriver-manager update",
+    "deploy": "git push origin master && git push heroku master",
+    "go": "ng build --aot & nodemon server.js"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +25,8 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "core-js": "^2.5.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
@@ -44,5 +51,9 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
+  },
+  "engines": {
+    "node": "8.11.1",
+    "npm": "5.6.0"
   }
 }
