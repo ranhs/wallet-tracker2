@@ -1,6 +1,5 @@
 const path = require('path');
 const express = require('express');
-const plugins = require('./src/server/plugin');
 var cors = require('cors');
 
 const port = process.env.PORT || 8080;
@@ -32,8 +31,6 @@ else
 // Run the app by serving the static files
 // in the dist directory
 app.use(express.static(__dirname + '/dist'));
-
-plugins.plugin(app);
 
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
