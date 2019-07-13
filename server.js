@@ -37,6 +37,12 @@ app.use(express.static(__dirname + '/dist/wallet-tracker2'));
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/dist/wallet-tracker2/index.html'));
 });
+app.get('/user', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/wallet-tracker2/index.html'));
+});
+app.get('/users', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/wallet-tracker2/index.html'));
+});
 
 // Start the app by listening on the default
 // Heroku port
