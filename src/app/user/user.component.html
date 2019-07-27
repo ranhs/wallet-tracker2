@@ -1,3 +1,26 @@
-<p>
-  user works!
-</p>
+<div id="container">
+  <div class="action-row">
+    <div class="action-row__label">
+      Name
+    </div>
+    <div>
+      <input [(ngModel)]="name" [readonly]="readOnly" type="text"  style="width: 100%" >
+    </div>
+  </div>
+  <div class="action-row">
+    <div class="action-row__label">
+      Password
+    </div>
+    <div>
+      <input [(ngModel)]="password" [readonly]="readOnly" type="password"  style="width: 100%" >
+    </div>
+  </div>
+  <div class="action-row">
+      <div>
+          <input [(ngModel)]="isAdmin" [disabled]="readOnly || !canSetAdmin" type="checkbox"  style="width: 100%"  name="ddd">
+      </div>
+      <div class="action-row__label">
+      Is Admin
+    </div>
+  </div>
+</div>

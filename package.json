@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "start-client": "ng serve",
+    "start-client": "ng serve --proxy-config proxy-local.conf.json",
     "build": "ng build",
     "postinstall": "ng build --aot --prod",
     "test": "ng test",

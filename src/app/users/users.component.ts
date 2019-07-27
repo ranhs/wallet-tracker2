@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersApiService, IUser } from '../users.api.service';
 
 @Component({
   selector: 'app-users',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+  users: IUser[] = []
+  constructor(private userApiService: UsersApiService) { }
 
-  constructor() { }
+  async ngOnInit() {
+    this.users = await this.userApiService.getUsers()
+  }
 
-  ngOnInit() {
+  get data(): string {
+    return JSON.stringify(this.users)
   }
 
 }

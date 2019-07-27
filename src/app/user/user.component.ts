@@ -9,7 +9,18 @@ export class UserComponent implements OnInit {
 
   constructor() { }
 
+  name: string
+  password: string
+  isAdmin: boolean
+  readOnly: boolean
+  canSetAdmin: boolean
+
   ngOnInit() {
+    this.name = "Ran"
+    this.password = "aaad"
+    this.isAdmin = true
+    this.readOnly = false
+    this.canSetAdmin = true
   }
 
 }
