@@ -1,4 +1,8 @@
 <div id="container">
+  <div id="header" class="banner">
+    User Details
+  </div>
+    
   <div class="action-row">
     <div class="action-row__label">
       Name
@@ -12,15 +16,18 @@
       Password
     </div>
     <div>
-      <input [(ngModel)]="password" [readonly]="readOnly" type="password"  style="width: 100%" >
+      <input [(ngModel)]="password" placeholder="••••" [readonly]="readOnly" type="password"  style="width: 100%">
     </div>
   </div>
   <div class="action-row">
-      <div>
-          <input [(ngModel)]="isAdmin" [disabled]="readOnly || !canSetAdmin" type="checkbox"  style="width: 100%"  name="ddd">
-      </div>
-      <div class="action-row__label">
-      Is Admin
-    </div>
+      <span class="action-row__label">
+        Is Admin
+      </span>
+      <span>
+          <select [(ngModel)]="isAdmin" [disabled]="readOnly || !canSetAdmin" (change)="onIsAdminSelected()">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+          </select>
+        </span>
   </div>
 </div>

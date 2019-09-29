@@ -8,14 +8,20 @@ import { UsersApiService, IUser } from '../users.api.service';
 })
 export class UsersComponent implements OnInit {
   users: IUser[] = []
+  selected_id: string = null
   constructor(private userApiService: UsersApiService) { }
 
   async ngOnInit() {
     this.users = await this.userApiService.getUsers()
   }
 
-  get data(): string {
-    return JSON.stringify(this.users)
+  selectUser(user: IUser)
+  {
+    if (user && user._id != this.selected_id) {
+      this.selected_id = user._id
+    } else {
+      this.selected_id = null
+    }
   }
 
 }

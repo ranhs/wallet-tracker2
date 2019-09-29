@@ -1,4 +1,8 @@
-<p>
-  users works!
-</p>
-{{data}}
+<ul class="user-table">
+  <li class="user-table-row"
+      *ngFor="let user of users"
+      [class.--selected]="selected_id == user._id"
+      (click)="selectUser(user)">
+  <div>{{user.name}}</div>
+</li>
+</ul>
