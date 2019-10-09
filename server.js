@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const proxy = require('express-http-proxy')
 var cors = require('cors');
 
 const port = process.env.PORT || 8080;
@@ -27,6 +28,8 @@ if ( port == 8080 )
   app.use(cors());
 else
   app.use(forceSSL());
+
+app.use('/api', proxy('localhost:3000'))
 
 // Run the app by serving the static files
 // in the dist directory
