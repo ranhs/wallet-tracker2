@@ -9,6 +9,7 @@ import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ActionButtonsComponent } from './action-buttons/action-buttons.component';
 
 const appRoute: Routes = [
   { path: '', component: HomeComponent},
@@ -22,7 +23,8 @@ const appRoute: Routes = [
     AppComponent,
     UserComponent,
     HomeComponent,
-    UsersComponent
+    UsersComponent,
+    ActionButtonsComponent
   ],
   imports: [
     BrowserModule,

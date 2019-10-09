@@ -15,6 +15,10 @@ export class UsersComponent implements OnInit {
     this.users = await this.userApiService.getUsers()
   }
 
+  get selected(): boolean {
+    return this.selected_id !== null
+  }
+
   selectUser(user: IUser)
   {
     if (user && user._id != this.selected_id) {
@@ -22,6 +26,22 @@ export class UsersComponent implements OnInit {
     } else {
       this.selected_id = null
     }
+  }
+
+  addClicked() {
+    console.log('addClicked')
+  }
+
+  removeClicked() {
+    console.log('removedClicked')
+  }
+
+  editClicked() {
+    console.log('editClicked')
+  }
+
+  viewClicked() {
+    console.log('viewClicked')
   }
 
 }

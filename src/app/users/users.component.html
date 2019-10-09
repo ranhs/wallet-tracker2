@@ -6,3 +6,13 @@
   <div>{{user.name}}</div>
 </li>
 </ul>
+<!-- Buttons-->
+<action-buttons [showAdd]='true'
+                (addClicked)='addClicked()'
+                [showRemove]='selected' 
+                (removeClicked)='removeClicked()'
+                [showEdit]='selected' 
+                (editClicked)='editClicked()'
+                [showView]='selected'
+                (viewClicked)='viewClicked()'>
+</action-buttons>

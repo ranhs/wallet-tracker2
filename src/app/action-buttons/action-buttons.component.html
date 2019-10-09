@@ -1,0 +1,31 @@
+<button class="wt-btn --success"
+        *ngIf="showAdd"
+        (click)="buttonClicked('add')">
+    {{buttoText.add}}
+</button>
+<button class="wt-btn"
+        *ngIf="showEdit"
+        (click)="buttonClicked('edit')">
+    {{buttoText.edit}}
+</button>
+<button class="wt-btn --secondary"
+        *ngIf="showView"
+        (click)="buttonClicked('view')">
+    {{buttoText.view}}
+</button>
+<button class="wt-btn --danger"
+        *ngIf="showRemove"
+        (click)="buttonClicked('remove')">
+    {{buttoText.remove}}
+</button>
+
+<button class="wt-btn"
+        *ngIf="showSave"
+        (click)="buttonClicked('save')">
+    {{buttoText.save}}
+</button>
+<button class="wt-btn --secondary"
+        *ngIf="showCancel"
+        (click)="buttonClicked('cancel')">
+    {{buttoText.cancel}}
+</button>
