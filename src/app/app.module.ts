@@ -14,6 +14,9 @@ import { ActionButtonsComponent } from './action-buttons/action-buttons.componen
 const appRoute: Routes = [
   { path: '', component: HomeComponent},
   { path: 'users/new/edit', component: UserComponent, data: {edit:true, new: true}},
+  { path: 'users/current/view', component: UserComponent, data: {edit:false,current:true}},
+  { path: 'users/current/edit', component: UserComponent, data: {edit:true,current:true}},
+  { path: 'users/current/delete', component: UserComponent, data: {edit:false,current:true,delete:true}},
   { path: 'users/:id/view', component: UserComponent, data: {edit:false}},
   { path: 'users/:id/edit', component: UserComponent, data: {edit:true}},
   { path: 'users/:id/delete', component: UserComponent, data: {edit:false,delete:true}},

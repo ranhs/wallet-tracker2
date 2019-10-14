@@ -13,6 +13,7 @@ export class UserComponent implements OnInit {
     private userApiService: UsersApiService,
     private router: Router) { }
 
+  title: string
   id: string
   initUserData: {name:string, isAdmin: boolean}
   name: string
@@ -21,12 +22,16 @@ export class UserComponent implements OnInit {
   readOnly: boolean
   deleteMode: boolean
   newMode: boolean
+  currentMode: boolean
   canSetAdmin: boolean
 
   async ngOnInit() {
     this.newMode = !!this.route.snapshot.data.new
     this.readOnly =  !this.route.snapshot.data.edit
     this.deleteMode = !!this.route.snapshot.data.delete
+    this.currentMode = !!this.route.snapshot.data.current
+
+    this.title = (this.newMode)?"Create User":(this.deleteMode)?"Delete User":(this.readOnly)?"User Details":"Edit User Details"
 
     if (this.newMode) {
       this.id = null
@@ -39,9 +44,18 @@ export class UserComponent implements OnInit {
 
     let id = this.route.snapshot.params['id']
     try {
-      let user = await this.userApiService.getUser(id)
+      let user: IUser
+      if ( this.currentMode ) {
+        this.id = null
+        user = await this.userApiService.getCurrentUser()
+        this.canSetAdmin = false
+      } else {
+        user = await this.userApiService.getUser(id)
+        this.id = user._id
+        this.canSetAdmin = true
+      }
+      
       this.initUserData = {name: user.name, isAdmin: user.admin}
-      this.id = user._id
       this.name = user.name
       this.password = ""
       this.isAdmin = user.admin
@@ -49,7 +63,6 @@ export class UserComponent implements OnInit {
       this.id = this.name = this.password = this.isAdmin = null
       this.readOnly = true
     }
-    this.canSetAdmin = true
   }
 
   public onIsAdminSelected() {
@@ -70,6 +83,10 @@ export class UserComponent implements OnInit {
   }
 
   cancelClicked() {
+    if ( this.currentMode ) {
+      // TODO
+      return
+    }
     this.router.navigate(['../../'], {relativeTo: this.route, queryParams: {selected_id:this.id}})
   }
 
@@ -81,13 +98,23 @@ export class UserComponent implements OnInit {
     if ( this.password !== '' ) {
       user.password = this.password
     }
-    let updatedUser = await this.userApiService.patchUser(this.id, user)
+    if ( this.currentMode ) {
+      await this.userApiService.patchCurrentUser(user)
+    } else {
+      await this.userApiService.patchUser(this.id, user)
+    }
+    
     this.cancelClicked()
   }
 
   async removeClicked() {
-    await this.userApiService.deleteUser(this.id)
-    this.router.navigate(['../../'], {relativeTo: this.route, queryParams: {}})   
+    if ( this.currentMode ) {
+      await this.userApiService.deleteCurrentUser()
+      // TODO: navigate to login users list
+    } else {
+      await this.userApiService.deleteUser(this.id)
+      this.router.navigate(['../../'], {relativeTo: this.route, queryParams: {}})   
+    }
   }
 
   async addClicked() {

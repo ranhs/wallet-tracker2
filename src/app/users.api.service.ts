@@ -48,6 +48,16 @@ export class UsersApiService {
     })
   }
 
+  public getCurrentUser(): Promise<IUser> {
+    return new Promise<IUser>((resolve, reject) => {
+      this.http.get(`/api/users/me`, this.httpOptions).subscribe( (data ) => {
+        resolve(<IUser>data);
+      }, (error) => {
+        reject(error)
+      })
+    })
+  }
+
   public createUser(user: {name: string, password: string, admin:boolean}): Promise<{user: IUser, token: string}> {
     return new Promise<{user: IUser, token: string}>((resolve, reject) => {
       this.http.post(`/api/users`, user, this.httpOptions).subscribe( (data) => {
@@ -68,6 +78,16 @@ export class UsersApiService {
     })
   }
 
+  public patchCurrentUser(user: {name?: string, password?: string, admin?:boolean}): Promise<IUser> {
+    return new Promise<IUser>((resolve, reject) => {
+      this.http.patch(`/api/users/me`, user, this.httpOptions).subscribe( (data) => {
+        resolve(<IUser>data)
+      }, (error) => {
+        reject(error)
+      })
+    })
+  }
+
   public deleteUser(id: string): Promise<void> {
     return new Promise<void>((resolve, reject)=>{
       this.http.delete(`/api/users/${id}`, this.httpOptions).subscribe( () => {
@@ -78,6 +98,15 @@ export class UsersApiService {
     })
   }
 
+  public deleteCurrentUser(): Promise<void> {
+    return new Promise<void>((resolve, reject)=>{
+      this.http.delete(`/api/users/me`, this.httpOptions).subscribe( () => {
+        resolve()
+      }, (error) => {
+        reject(error)
+      })
+    })
+  }
   public onIsAdminSelected() {
     console.log('onIsAdminSelected')
   }
