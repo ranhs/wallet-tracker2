@@ -30,4 +30,15 @@
           </select>
         </span>
   </div>
+  <!-- Buttons-->
+  <action-buttons 
+                  [showCancel]='true'
+                  (cancelClicked)='cancelClicked()'
+                  [showSave]='canSave'
+                  (saveClicked)='saveClicked()'
+                  [showRemove]='deleteMode'
+                  (removeClicked)='removeClicked()'
+                  [showAdd]='canAdd'
+                  (addClicked)='addClicked()'>
+  </action-buttons>
 </div>

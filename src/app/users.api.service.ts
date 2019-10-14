@@ -48,6 +48,36 @@ export class UsersApiService {
     })
   }
 
+  public createUser(user: {name: string, password: string, admin:boolean}): Promise<{user: IUser, token: string}> {
+    return new Promise<{user: IUser, token: string}>((resolve, reject) => {
+      this.http.post(`/api/users`, user, this.httpOptions).subscribe( (data) => {
+        resolve(<{user: IUser, token: string}>data)
+      }, (error) => {
+        reject(error)
+      })
+    })
+  }
+
+  public patchUser(id: string, user: {name?: string, password?: string, admin?:boolean}): Promise<IUser> {
+    return new Promise<IUser>((resolve, reject) => {
+      this.http.patch(`/api/users/${id}`, user, this.httpOptions).subscribe( (data) => {
+        resolve(<IUser>data)
+      }, (error) => {
+        reject(error)
+      })
+    })
+  }
+
+  public deleteUser(id: string): Promise<void> {
+    return new Promise<void>((resolve, reject)=>{
+      this.http.delete(`/api/users/${id}`, this.httpOptions).subscribe( () => {
+        resolve()
+      }, (error) => {
+        reject(error)
+      })
+    })
+  }
+
   public onIsAdminSelected() {
     console.log('onIsAdminSelected')
   }

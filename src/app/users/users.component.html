@@ -1,18 +1,23 @@
-<ul class="user-table">
-  <li class="user-table-row"
-      *ngFor="let user of users"
-      [class.--selected]="selected_id == user._id"
-      (click)="selectUser(user)">
-  <div>{{user.name}}</div>
-</li>
-</ul>
-<!-- Buttons-->
-<action-buttons [showAdd]='true'
-                (addClicked)='addClicked()'
-                [showRemove]='selected' 
-                (removeClicked)='removeClicked()'
-                [showEdit]='selected' 
-                (editClicked)='editClicked()'
-                [showView]='selected'
-                (viewClicked)='viewClicked()'>
-</action-buttons>
+<div id="container">
+  <div id="header" class="banner">
+    Users List
+  </div>
+  <ul class="user-table">
+    <li class="user-table-row"
+        *ngFor="let user of users"
+        [class.--selected]="selected_id == user._id"
+        (click)="selectUser(user)">
+    <div>{{user.name}}</div>
+  </li>
+  </ul>
+  <!-- Buttons-->
+  <action-buttons [showAdd]='true'
+                  (addClicked)='addClicked()'
+                  [showRemove]='selected' 
+                  (removeClicked)='removeClicked()'
+                  [showEdit]='selected' 
+                  (editClicked)='editClicked()'
+                  [showView]='selected'
+                  (viewClicked)='viewClicked()'>
+  </action-buttons>
+</div>

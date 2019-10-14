@@ -13,8 +13,10 @@ import { ActionButtonsComponent } from './action-buttons/action-buttons.componen
 
 const appRoute: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'users/:id', component: UserComponent, data: {edit:false}},
+  { path: 'users/new/edit', component: UserComponent, data: {edit:true, new: true}},
+  { path: 'users/:id/view', component: UserComponent, data: {edit:false}},
   { path: 'users/:id/edit', component: UserComponent, data: {edit:true}},
+  { path: 'users/:id/delete', component: UserComponent, data: {edit:false,delete:true}},
   { path: 'users', component: UsersComponent}
 ]
 
